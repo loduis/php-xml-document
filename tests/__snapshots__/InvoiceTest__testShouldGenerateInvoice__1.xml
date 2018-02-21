@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FacturaElectronica xmlns="https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica">
+  <Clave>bdH9iHQLepxN22g17Oj/TzdRCQD/ZJb0H1HdGZpNDzzG5RdgGcyXqvJV1Q5ZGUlDSoQ=</Clave>
+  <FechaEmision>2018-02-20</FechaEmision>
+  <Emisor>
+    <Nombre>Juan Perez</Nombre>
+    <Identificacion>
+      <Tipo>02</Tipo>
+      <Numero>3101234567</Numero>
+    </Identificacion>
+    <Ubicacion>
+      <Provincia>2</Provincia>
+      <Canton>01</Canton>
+      <Distrito>10</Distrito>
+      <Barrio>02</Barrio>
+      <OtrasSenas>edificio torre XYZ</OtrasSenas>
+    </Ubicacion>
+    <Telefono>
+      <CodigoPais>506</CodigoPais>
+      <NumTelefono>22122000</NumTelefono>
+    </Telefono>
+    <CorreoElectronico>facturaelectronica@test.com</CorreoElectronico>
+  </Emisor>
+</FacturaElectronica>

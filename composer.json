@@ -1,0 +1,32 @@
+{
+    "name": "loduis/xml-document",
+    "type": "library",
+    "require": {
+        "illuminate/support": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5",
+        "spatie/phpunit-snapshot-assertions": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Loduis Madariaga",
+            "email": "loduis@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "XML\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "XML\\Tests\\": "tests/"
+        }
+    }
+}
