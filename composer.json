@@ -2,6 +2,8 @@
     "name": "loduis/xml-document",
     "type": "library",
     "require": {
+        "php": ">=7.0.22",
+        "ext-xml": "*",
         "illuminate/support": "^5.5"
     },
     "require-dev": {
