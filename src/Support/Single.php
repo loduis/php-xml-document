@@ -2,11 +2,7 @@
 
 namespace XML\Support;
 
-use Ubl\Support;
-use Ubl\Contracts;
-use Illuminate\Support\Arr;
-
-class Single extends DataAccess implements Contracts\SingleValue
+class Single extends DataAccess implements \XML\Contracts\SingleValue
 {
     use SingleValue;
 
