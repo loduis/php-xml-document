@@ -3,7 +3,7 @@
 namespace XML\Document;
 
 
-abstract class Contract extends Object
+abstract class Contract extends Element
 {
     public static function fromArray(array $data)
     {

@@ -46,7 +46,7 @@ namespace XML\Tests {
 namespace {
 
     use Contact\Document;
-    use XML\Document\Object;
+    use XML\Document\Element;
     use XML\Document\Contract;
 
     class Invoice extends Contract {
@@ -77,7 +77,7 @@ namespace {
     }
 
 
-    class Contact extends Object
+    class Contact extends Element
     {
         protected $fillable = [
             'name' => 'string',
@@ -103,7 +103,7 @@ namespace {
         }
     }
 
-    class Address extends Object
+    class Address extends Element
     {
         protected $fillable = [
             'province' => 'string',
@@ -126,7 +126,7 @@ namespace {
     }
 
 
-    class Phone extends Object
+    class Phone extends Element
     {
         protected $fillable = [
             'code' => 'string',
@@ -145,9 +145,9 @@ namespace {
 
 namespace Contact {
 
-    use XML\Document\Object;
+    use XML\Document\Element;
 
-    class Document extends Object
+    class Document extends Element
     {
         protected $fillable = [
             'type' => 'string',
