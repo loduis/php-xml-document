@@ -2,9 +2,8 @@
     "name": "loduis/xml-document",
     "type": "library",
     "require": {
-        "php": ">=7.0.22",
-        "ext-xml": "*",
-        "illuminate/support": "^5.8"
+        "php": ">=7.3",
+        "ext-xml": "*"
     },
     "require-dev": {
         "loduis/xml-contracts": "dev-master",
