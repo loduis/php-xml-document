@@ -3,11 +3,11 @@
     "type": "library",
     "require": {
         "php": ">=7.3",
-        "ext-xml": "*"
+        "ext-xml": "*",
+        "loduis/xml-contracts": "dev-master",
+        "loduis/xml-support": "dev-master"      
     },
     "require-dev": {
-        "loduis/xml-contracts": "dev-master",
-        "loduis/xml-support": "dev-master",
         "loduis/xml-tests": "dev-master"
     },
     "license": "MIT",
