@@ -14,6 +14,8 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Creator
 {
+    public $standalone;
+
     protected $simpleType;
 
     protected $complexType;
@@ -55,7 +57,7 @@ class Creator
         }
         ksort($attributes);
 
-        return '<?xml version="1.0" encoding="UTF-8"?>' .
+        return '<?xml version="1.0" encoding="utf-8"?>' .
             $this->createElement(
                 $root,
                 $this->createElements($this->doc, $name),

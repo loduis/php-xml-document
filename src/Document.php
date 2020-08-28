@@ -10,11 +10,12 @@ class Document extends DOMDocument
 {
     public function __construct(Creator $source)
     {
-        parent::__construct('1.0', 'UTF-8');
-
+        parent::__construct('1.0', 'utf-8');
         $this->loadXML((string) $source, LIBXML_COMPACT);
-
         $this->preserveWhiteSpace = false;
+        if ($source->standalone !== null) {
+            $this->xmlStandalone = $source->standalone;
+        }
     }
 
     public function asXML()
