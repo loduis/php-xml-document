@@ -38,7 +38,7 @@ abstract class Document extends Element
         return basename($className);
     }
 
-    abstract protected function creator(): Creator;
+    abstract protected function creator();
 
     public function create()
     {
