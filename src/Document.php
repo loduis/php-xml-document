@@ -2,40 +2,64 @@
 
 namespace XML;
 
-use DOMDocument;
-use XML\Document\Creator;
-use XML\Document\Contract;
+use XML\Document\{
+    Element,
+    Creator
+};
 
-class Document extends DOMDocument
+abstract class Document extends Element
 {
-    public function __construct(Creator $source)
+    public static function fromArray(array $data)
     {
-        parent::__construct('1.0', 'utf-8');
-        $this->loadXML((string) $source, LIBXML_COMPACT);
-        $this->preserveWhiteSpace = false;
-        if ($source->standalone !== null) {
-            $this->xmlStandalone = $source->standalone;
-        }
+        return new static($data);
     }
 
-    public function asXML()
+    public static function fromJson($json)
     {
-        return $this->saveXML();
+        return static::fromArray(json_decode($json, true));
     }
 
-    public function __toString()
+    public function fromFile($path)
     {
-        return $this->asXML();
+        return static::fromJson(file_get_contents($path));
+    }
+
+    protected function init($data, $fillable)
+    {
+        $this->fillable += $fillable;
+        parent::__construct($data);
+    }
+
+    protected function getName()
+    {
+        $className = static::class;
+        $className = str_replace('\\', '/', $className);
+
+        return basename($className);
+    }
+
+    abstract protected function creator(): Creator;
+
+    public function create()
+    {
+        return $this->creator()->toDocument();
     }
 
     public function pretty()
     {
-        $this->formatOutput = true;
+        $doc = $this->create();
 
-        $content = (string) $this;
+        $doc->formatOutput = true;
 
-        $this->formatOutput = false;
+        $content = (string) $doc->saveXML();
+
+        $doc->formatOutput = false;
 
         return $content . PHP_EOL;
+    }
+
+    public function __toString()
+    {
+        return $this->create()->saveXML();
     }
 }

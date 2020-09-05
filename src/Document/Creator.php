@@ -2,13 +2,14 @@
 
 namespace XML\Document;
 
-use XML\Document;
+use DOMDocument;
 use Illuminate\Support\{
     Arr,
     Str
 };
 use XML\Support\DataAccess;
 use XML\Support\EmptyValue;
+use XML\Document as Contract;
 use XML\Contracts\SingleValue;
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -41,7 +42,14 @@ class Creator
 
     public function toDocument()
     {
-        return new Document($this);
+        $doc = new DOMDocument('1.0', 'utf-8');
+        $doc->loadXML((string) $this, LIBXML_COMPACT);
+        $doc->preserveWhiteSpace = false;
+        if ($this->standalone !== null) {
+            $doc->xmlStandalone = $this->standalone;
+        }
+
+        return $doc;
     }
 
     protected function getSource()

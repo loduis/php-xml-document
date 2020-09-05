@@ -3,7 +3,6 @@
 namespace XML\Tests {
 
     use Invoice;
-    use XML\Document\Creator;
 
     final class InvoiceTest extends TestCase
     {
@@ -33,11 +32,7 @@ namespace XML\Tests {
                 'email' => 'facturaelectronica@test.com',
             ];
 
-            $creator = new Creator($invoice, [
-                'https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica'
-            ]);
-
-            $this->assertMatchesXmlSnapshot((string) $creator->toDocument()->pretty());
+            $this->assertMatchesXmlSnapshot($invoice->pretty());
         }
     }
 
@@ -45,11 +40,12 @@ namespace XML\Tests {
 
 namespace {
 
-    use Contact\Document;
+    use XML\Document;
+    use XML\Document\Creator;
+    use Contact\Document as ContactDocument;
     use XML\Document\Element;
-    use XML\Document\Contract;
 
-    class Invoice extends Contract {
+    class Invoice extends Document {
 
         protected $fillable = [
             'key' => 'string',
@@ -74,6 +70,13 @@ namespace {
         {
             return 'FacturaElectronica';
         }
+
+        protected function creator(): Creator
+        {
+            return new Creator($this, [
+                'https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica'
+            ]);
+        }
     }
 
 
@@ -81,7 +84,7 @@ namespace {
     {
         protected $fillable = [
             'name' => 'string',
-            'document' => Document::class,
+            'document' => ContactDocument::class,
             'tradename' => 'string',
             'address' => Address::class,
             'email' => 'string',
@@ -163,4 +166,3 @@ namespace Contact {
         }
     }
 }
-
