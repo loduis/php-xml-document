@@ -25,25 +25,20 @@ class Creator
 
     protected $xmlns;
 
-    protected $namespaces = [];
+    protected $namespaces;
 
 
     public function __construct(Contract $doc, array $xmlns = [], array $namespaces = [])
     {
+        $this->doc = $doc;
         $this->xmlns = $xmlns ;
         $this->namespaces = $namespaces;
-        $this->doc = $doc;
-    }
-
-    public function __toString()
-    {
-        return $this->getSource();
     }
 
     public function toDocument()
     {
         $doc = new DOMDocument('1.0', 'utf-8');
-        $doc->loadXML((string) $this, LIBXML_COMPACT);
+        $doc->loadXML($this->getSource(), LIBXML_COMPACT);
         $doc->preserveWhiteSpace = false;
         if ($this->standalone !== null) {
             $doc->xmlStandalone = $this->standalone;
