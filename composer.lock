@@ -331,12 +331,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/loduis/php-xml-support.git",
-                "reference": "a1477914c948b41ca8d8d199ae37d0f142601c93"
+                "reference": "355a71428c6c7dafd19f7c115be0a919fc9960dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/loduis/php-xml-support/zipball/a1477914c948b41ca8d8d199ae37d0f142601c93",
-                "reference": "a1477914c948b41ca8d8d199ae37d0f142601c93",
+                "url": "https://api.github.com/repos/loduis/php-xml-support/zipball/355a71428c6c7dafd19f7c115be0a919fc9960dd",
+                "reference": "355a71428c6c7dafd19f7c115be0a919fc9960dd",
                 "shasum": ""
             },
             "require": {
@@ -359,7 +359,7 @@
                     "email": "loduis@gmail.com"
                 }
             ],
-            "time": "2020-09-11T15:25:11+00:00"
+            "time": "2020-09-22T16:36:27+00:00"
         },
         {
             "name": "nesbot/carbon",
