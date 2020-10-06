@@ -1,15 +1,6 @@
 {
     "name": "loduis/xml-document",
     "type": "library",
-    "require": {
-        "php": ">=7.3",
-        "ext-xml": "*",
-        "loduis/xml-contracts": "dev-master",
-        "loduis/xml-support": "dev-master"      
-    },
-    "require-dev": {
-        "loduis/xml-tests": "dev-master"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -17,7 +8,6 @@
             "email": "loduis@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "XML\\": "src/"
@@ -30,5 +20,19 @@
         "psr-4": {
             "XML\\Tests\\": "tests/"
         }
-    }
+    },
+    "require": {
+        "php": ">=7.3",
+        "ext-xml": "*",
+        "loduis/xml-contracts": "master",
+        "loduis/xml-support": "master"
+    },
+    "require-dev": {
+        "loduis/xml-tests": "master"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
