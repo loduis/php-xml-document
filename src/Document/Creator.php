@@ -27,7 +27,6 @@ class Creator
 
     protected $namespaces;
 
-
     public function __construct(Contract $doc, array $xmlns = [], array $namespaces = [])
     {
         $this->doc = $doc;
@@ -38,7 +37,11 @@ class Creator
     public function toDocument()
     {
         $doc = new DOMDocument('1.0', 'utf-8');
-        $doc->loadXML($this->getSource(), LIBXML_COMPACT);
+        libxml_use_internal_errors(true);
+        if (!$doc->loadXML($this->getSource(), LIBXML_COMPACT)) {
+            $err = libxml_get_last_error();
+            throw $err;
+        }
         $doc->preserveWhiteSpace = false;
         if ($this->standalone !== null) {
             $doc->xmlStandalone = $this->standalone;
@@ -146,7 +149,7 @@ class Creator
 
     protected function createElementNS($namespace, $name, $value = null, array $attributes = [], $path = null)
     {
-        if ($value && $namespace == $this->simpleType && is_string($value) && Str::contains($value, ['&'])) {
+        if ($value && $namespace == $this->simpleType && is_string($value) && Str::contains($value, ['&']) && strpos($value, '<![CDATA[') === false) {
             $value = "<![CDATA[$value]]>";
         }
         $element = $this->resolveName($name, $path, $namespace);
