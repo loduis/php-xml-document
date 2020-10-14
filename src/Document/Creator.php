@@ -40,7 +40,11 @@ class Creator
         libxml_use_internal_errors(true);
         if (!$doc->loadXML($this->getSource(), LIBXML_COMPACT)) {
             $err = libxml_get_last_error();
-            throw $err;
+            libxml_clear_errors();
+            throw new \RuntimeException(
+                $err->message . ' on line ' . $err->line . ', column ' . $err->column,
+                $err->code
+            );
         }
         $doc->preserveWhiteSpace = false;
         if ($this->standalone !== null) {
