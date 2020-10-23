@@ -11,7 +11,6 @@ use XML\Support\DataAccess;
 use XML\Support\EmptyValue;
 use XML\Document as Contract;
 use XML\Contracts\SingleValue;
-use Illuminate\Contracts\Support\Arrayable;
 
 class Creator
 {
@@ -111,7 +110,7 @@ class Creator
         } elseif (is_array($value)) {
             $content .= $this->createComplexArray($key, $value, $path);
         } elseif ($value !== null) {
-            $content .= $this->createElementNS($this->simpleType, $key, $value, [], $path);
+            $content .= $this->createElementNS($this->simpleType, $key, $this->escape($value), [], $path);
         }
 
         return $content;
@@ -153,9 +152,6 @@ class Creator
 
     protected function createElementNS($namespace, $name, $value = null, array $attributes = [], $path = null)
     {
-        if ($value && $namespace == $this->simpleType && is_string($value) && Str::contains($value, ['&']) && strpos($value, '<![CDATA[') === false) {
-            $value = "<![CDATA[$value]]>";
-        }
         $element = $this->resolveName($name, $path, $namespace);
 
         return $this->createElement($element, $value, $attributes);
@@ -177,6 +173,11 @@ class Creator
         }
 
         return $element;
+    }
+
+    protected function escape($value)
+    {
+        return htmlentities($value, ENT_XML1);
     }
 
     protected function resolveName($name, $path = null, $namespace = null)

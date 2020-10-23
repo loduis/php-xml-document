@@ -23,7 +23,7 @@ namespace XML\Tests {
                     'canton'  => '01',
                     'district' => '10',
                     'neighborhood' => '02',
-                    'other_signs' => 'edificio torre XYZ'
+                    'other_signs' => 'edificio torre & XYZ'
                 ],
                 'phone' =>[
                     'code' => '506',
