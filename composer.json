@@ -1,5 +1,6 @@
 {
     "name": "loduis/xml-document",
+    "description": "This library generate xml document from variable options",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -22,7 +23,7 @@
         }
     },
     "require": {
-        "php": ">=7.3",
+        "php": "^7.4",
         "ext-xml": "*",
         "loduis/xml-contracts": "master",
         "loduis/xml-support": "master"

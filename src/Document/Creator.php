@@ -26,11 +26,12 @@ class Creator
 
     protected $namespaces;
 
-    public function __construct(Contract $doc, array $xmlns = [], array $namespaces = [])
+    public function __construct(Contract $doc, array $xmlns = [], array $namespaces = [], $standalone = null)
     {
         $this->doc = $doc;
         $this->xmlns = $xmlns ;
         $this->namespaces = $namespaces;
+        $this->standalone = $standalone;
     }
 
     public function toDocument()
