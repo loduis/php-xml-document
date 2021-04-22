@@ -74,7 +74,7 @@ namespace {
         protected function creator()
         {
             return new Creator($this, [
-                'https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica'
+                'xmlns' => 'https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica'
             ]);
         }
     }
