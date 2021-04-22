@@ -22,14 +22,14 @@ class Creator
 
     protected $doc;
 
-    protected $xmlns;
+    protected $attributes;
 
     protected $namespaces;
 
-    public function __construct(Contract $doc, array $xmlns = [], array $namespaces = [], $standalone = null)
+    public function __construct(Contract $doc, array $attributes = [], array $namespaces = [], $standalone = null)
     {
         $this->doc = $doc;
-        $this->xmlns = $xmlns ;
+        $this->attributes = $attributes;
         $this->namespaces = $namespaces;
         $this->standalone = $standalone;
     }
@@ -59,10 +59,7 @@ class Creator
         $name = $this->doc->name;
         $root = $this->resolveName($name);
         $attributes = [];
-        foreach ($this->xmlns as $key => $value) {
-            if (strpos($key, ':') === false) {
-                $key = is_numeric($key) ? "xmlns" : "xmlns:$key";
-            }
+        foreach ($this->attributes as $key => $value) {
             $attributes[$key] = $value;
         }
         ksort($attributes);
