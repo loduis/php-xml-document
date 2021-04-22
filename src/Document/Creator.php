@@ -175,6 +175,10 @@ class Creator
 
     protected function escape($value)
     {
+        if (strpos($value, '<![CDATA[') !== false) {
+            return $value;
+        }
+
         return htmlentities($value, ENT_XML1);
     }
 
