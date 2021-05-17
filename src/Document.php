@@ -58,6 +58,11 @@ abstract class Document extends Element
         return $content . PHP_EOL;
     }
 
+    public function validate(string $filename): bool
+    {
+        return $this->create()->schemaValidate($filename);
+    }
+
     public function __toString()
     {
         return $this->create()->saveXML();
