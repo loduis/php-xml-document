@@ -4,6 +4,8 @@ namespace XML\Tests {
 
     use Invoice;
 
+    use XML\Support\Single;
+
     final class InvoiceTest extends TestCase
     {
         public function testShouldGenerateInvoice()
@@ -31,6 +33,11 @@ namespace XML\Tests {
                 ],
                 'email' => 'facturaelectronica@test.com',
             ];
+            $invoice->seller = new Single('Prueba', [
+                'firstName' => 'Otra',
+                'secondName' => null, // no se muestra el attributo
+                'lastName' => ''
+            ]);
 
             $this->assertMatchesXmlSnapshot($invoice->pretty());
         }
@@ -44,6 +51,7 @@ namespace {
     use XML\Document\Creator;
     use Contact\Document as ContactDocument;
     use XML\Document\Element;
+    use XML\Support\Single;
 
     class Invoice extends Document {
 
@@ -52,7 +60,8 @@ namespace {
             'number' => 'string',
             'date' => 'string',
             'sender' => Contact::class,
-            'receiver' => Contact::class
+            'receiver' => Contact::class,
+            'seller' => Single::class
         ];
 
         public function toArray()
@@ -62,7 +71,8 @@ namespace {
                 'NumeroConsecutivo' => $this->number,
                 'FechaEmision' => $this->date,
                 'Emisor' => $this->sender,
-                'Receptor' => $this->receiver
+                'Receptor' => $this->receiver,
+                'Vendedor' => $this->seller
             ];
         }
 

@@ -161,7 +161,9 @@ class Creator
             $source = "<$element";
             if ($attributes) {
                 array_walk($attributes, function ($value, $key) use (& $source) {
-                    $source .= ' ' . $key . '="' . $value . '"';
+                    if ($value !== null) {
+                        $source .= ' ' . $key . '="' . $value . '"';
+                    }
                 });
             }
             if (is_bool($value)) {

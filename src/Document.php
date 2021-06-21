@@ -3,8 +3,7 @@
 namespace XML;
 
 use XML\Document\{
-    Element,
-    Creator
+    Element
 };
 
 abstract class Document extends Element
