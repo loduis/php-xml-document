@@ -48,6 +48,10 @@ abstract class Document extends Element
     {
         if ($doc === null) {
             $doc = $this->create();
+        } elseif (is_string($doc)) {
+            $dom = new \DOMDocument('1.0');
+            $dom->loadXML($doc, LIBXML_NSCLEAN);
+            $doc = $dom;
         }
 
         $doc->formatOutput = true;

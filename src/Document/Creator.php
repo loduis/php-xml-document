@@ -4,8 +4,7 @@ namespace XML\Document;
 
 use DOMDocument;
 use Illuminate\Support\{
-    Arr,
-    Str
+    Arr
 };
 use XML\Support\DataAccess;
 use XML\Support\EmptyValue;
