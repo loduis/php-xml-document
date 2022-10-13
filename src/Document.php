@@ -3,7 +3,7 @@
 namespace XML;
 
 use XML\Document\{
-    Element
+    Element,
 };
 
 abstract class Document extends Element
@@ -44,15 +44,9 @@ abstract class Document extends Element
         return $this->creator()->toDocument();
     }
 
-    public function pretty($doc = null)
+    public function pretty()
     {
-        if ($doc === null) {
-            $doc = $this->create();
-        } elseif (is_string($doc)) {
-            $dom = new \DOMDocument('1.0');
-            $dom->loadXML($doc, LIBXML_NSCLEAN);
-            $doc = $dom;
-        }
+        $doc = $this->create();
 
         $doc->formatOutput = true;
 
