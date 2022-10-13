@@ -44,9 +44,11 @@ abstract class Document extends Element
         return $this->creator()->toDocument();
     }
 
-    public function pretty()
+    public function pretty($doc = null)
     {
-        $doc = $this->create();
+        if ($doc === null) {
+            $doc = $this->create();
+        }
 
         $doc->formatOutput = true;
 
