@@ -33,21 +33,35 @@ class Creator
         $this->standalone = $standalone;
     }
 
-    public function toDocument()
+    public function toDocument(bool $pretty = false)
+    {
+        $source = $this->getSource();
+        $doc = $this->createWithSource($source);
+        $doc->preserveWhiteSpace = $pretty;
+        $doc->formatOutput = $pretty;
+        if ($this->standalone !== null) {
+            $doc->xmlStandalone = $this->standalone;
+        }
+        if ($pretty) {
+            $doc = $this->createWithSource((string) $doc->saveXML());
+            $doc->preserveWhiteSpace = true;
+            $doc->formatOutput = false;
+        }
+
+        return $doc;
+    }
+
+    protected function createWithSource(string $source)
     {
         $doc = new DOMDocument('1.0', 'utf-8');
         libxml_use_internal_errors(true);
-        if (!$doc->loadXML($this->getSource(), LIBXML_COMPACT)) {
+        if (!$doc->loadXML($source, LIBXML_COMPACT)) {
             $err = libxml_get_last_error();
             libxml_clear_errors();
             throw new \RuntimeException(
                 $err->message . ' on line ' . $err->line . ', column ' . $err->column,
                 $err->code
             );
-        }
-        $doc->preserveWhiteSpace = false;
-        if ($this->standalone !== null) {
-            $doc->xmlStandalone = $this->standalone;
         }
 
         return $doc;

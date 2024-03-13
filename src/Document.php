@@ -39,9 +39,9 @@ abstract class Document extends Element
 
     abstract protected function creator();
 
-    public function create()
+    public function create(bool $pretty = false)
     {
-        return $this->creator()->toDocument();
+        return $this->creator()->toDocument($pretty);
     }
 
     public function pretty()

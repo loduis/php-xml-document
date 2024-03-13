@@ -21,4 +21,5 @@
     </Telefono>
     <CorreoElectronico>facturaelectronica@test.com</CorreoElectronico>
   </Emisor>
+  <Vendedor firstName="Otra" lastName="">Prueba</Vendedor>
 </FacturaElectronica>

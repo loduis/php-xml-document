@@ -38,8 +38,10 @@ namespace XML\Tests {
                 'secondName' => null, // no se muestra el attributo
                 'lastName' => ''
             ]);
-
-            $this->assertMatchesXmlSnapshot($invoice->pretty());
+            $source1  = $invoice->pretty();
+            $source2 = $invoice->_pretty();
+            $this->assertEquals(trim($source1), trim($source2));
+            $this->assertMatchesXmlSnapshot($source1);
         }
     }
 
@@ -86,6 +88,11 @@ namespace {
             return new Creator($this, [
                 'xmlns' => 'https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica'
             ]);
+        }
+
+        public function _pretty()
+        {
+            return $this->creator()->toDocument(true)->saveXML();
         }
     }
 
