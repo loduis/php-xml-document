@@ -40,11 +40,10 @@ namespace XML\Tests {
             ]);
             $source1  = $invoice->pretty();
             $source2 = $invoice->_pretty();
-            $this->assertEquals(trim($source1), trim($source2));
+            $this->assertEquals($source1, $source2);
             $this->assertMatchesXmlSnapshot($source1);
         }
     }
-
 }
 
 namespace {

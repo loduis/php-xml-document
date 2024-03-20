@@ -54,7 +54,7 @@ abstract class Document extends Element
 
         $doc->formatOutput = false;
 
-        return $content . PHP_EOL;
+        return $content;
     }
 
     public function validate(string $filename): bool

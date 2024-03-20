@@ -35,25 +35,25 @@ class Creator
 
     public function toDocument(bool $pretty = false)
     {
-        $source = $this->getSource();
-        $doc = $this->createWithSource($source);
+        $doc = new DOMDocument('1.0', 'utf-8');
         $doc->preserveWhiteSpace = $pretty;
         $doc->formatOutput = $pretty;
         if ($this->standalone !== null) {
             $doc->xmlStandalone = $this->standalone;
         }
+        $this->load($doc, $this->getSource());
         if ($pretty) {
-            $doc = $this->createWithSource((string) $doc->saveXML());
+            $source = (string) $doc->saveXML();
             $doc->preserveWhiteSpace = true;
             $doc->formatOutput = false;
+            $this->load($doc, $source);
         }
 
         return $doc;
     }
 
-    protected function createWithSource(string $source)
+    private function load(DOMDocument $doc, string $source)
     {
-        $doc = new DOMDocument('1.0', 'utf-8');
         libxml_use_internal_errors(true);
         if (!$doc->loadXML($source, LIBXML_COMPACT)) {
             $err = libxml_get_last_error();
@@ -63,8 +63,6 @@ class Creator
                 $err->code
             );
         }
-
-        return $doc;
     }
 
     protected function getSource()
