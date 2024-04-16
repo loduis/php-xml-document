@@ -3,9 +3,6 @@
 namespace XML\Document;
 
 use DOMDocument;
-use Illuminate\Support\{
-    Arr
-};
 use XML\Support\DataAccess;
 use XML\Support\EmptyValue;
 use XML\Document as Contract;
@@ -128,7 +125,7 @@ class Creator
     protected function createComplexArray($key, $value, $path)
     {
         $content = '';
-        if (Arr::isAssoc($value)) {
+        if (!array_is_list($value)) {
             if ($source = $this->createComplexType($key, $value, $path)) {
                 $content .= $source;
             }
