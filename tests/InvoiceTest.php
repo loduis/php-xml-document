@@ -65,7 +65,7 @@ namespace {
             'seller' => Single::class
         ];
 
-        public function toArray()
+        public function toArray(): array
         {
             return [
                 'Clave' => $this->key,
@@ -108,7 +108,7 @@ namespace {
             'fax' => Phone::class
         ];
 
-        public function toArray()
+        public function toArray(): array
         {
             return [
                 'Nombre' => $this->name,
@@ -132,7 +132,7 @@ namespace {
             'otherSigns' => 'string'
         ];
 
-        public function toArray()
+        public function toArray(): array
         {
             return [
                 'Provincia' => $this->province,
@@ -152,7 +152,7 @@ namespace {
             'number' => 'string'
         ];
 
-        public function toArray()
+        public function toArray(): array
         {
             return [
                 'CodigoPais' => $this->code,
@@ -173,7 +173,7 @@ namespace Contact {
             'number' => 'string'
         ];
 
-        public function toArray()
+        public function toArray(): array
         {
             return [
                 'Tipo' => $this->type,

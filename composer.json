@@ -31,6 +31,12 @@
     "require-dev": {
         "loduis/xml-tests": "master"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/loduis/php-support.git"
+        }
+    ],
     "config": {
         "sort-packages": true
     },
